@@ -5,10 +5,13 @@ import com.vaishnavi.project.uber.uberApp.entities.Rider;
 import com.vaishnavi.project.uber.uberApp.entities.enums.PaymentMethod;
 import com.vaishnavi.project.uber.uberApp.entities.enums.RideStatus;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.locationtech.jts.geom.Point;
 
 import java.time.LocalDateTime;
+
+@Data
 
 public class RideDto {
 

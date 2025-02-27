@@ -5,6 +5,9 @@ import com.vaishnavi.project.uber.uberApp.dto.RideDto;
 import com.vaishnavi.project.uber.uberApp.dto.RideRequestDto;
 import com.vaishnavi.project.uber.uberApp.dto.RiderDto;
 import com.vaishnavi.project.uber.uberApp.entities.RideRequest;
+import com.vaishnavi.project.uber.uberApp.entities.Rider;
+import com.vaishnavi.project.uber.uberApp.entities.User;
+import jakarta.transaction.UserTransaction;
 
 import java.util.List;
 
@@ -21,4 +24,6 @@ public interface RiderService {
 
     List<RideDto> geAllMyRides();
 
+
+    Rider createNewRider(User user);
 }
