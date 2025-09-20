@@ -1,0 +1,145 @@
+INSERT INTO app_user (name, email, password) VALUES
+('Alice Johnson', 'alice.johnson@example.com', '$2a$10$3examplepasswordHash1'),
+('Bob Smith', 'bob.smith@example.com', '$2a$10$3examplepasswordHash2'),
+('Charlie Brown', 'charlie.brown@example.com', '$2a$10$3examplepasswordHash3'),
+('David Wilson', 'david.wilson@example.com', '$2a$10$3examplepasswordHash4'),
+('Emma Davis', 'emma.davis@example.com', '$2a$10$3examplepasswordHash5'),
+('Frank Thomas', 'frank.thomas@example.com', '$2a$10$3examplepasswordHash6'),
+('Grace Lee', 'grace.lee@example.com', '$2a$10$3examplepasswordHash7'),
+('Henry White', 'henry.white@example.com', '$2a$10$3examplepasswordHash8'),
+('Isla Harris', 'isla.harris@example.com', '$2a$10$3examplepasswordHash9'),
+('Jack Martin', 'jack.martin@example.com', '$2a$10$3examplepasswordHash10'),
+('Kara Moore', 'kara.moore@example.com', '$2a$10$3examplepasswordHash11'),
+('Liam Scott', 'liam.scott@example.com', '$2a$10$3examplepasswordHash12'),
+('Mia Adams', 'mia.adams@example.com', '$2a$10$3examplepasswordHash13'),
+('Noah Carter', 'noah.carter@example.com', '$2a$10$3examplepasswordHash14'),
+('Olivia Perez', 'olivia.perez@example.com', '$2a$10$3examplepasswordHash15'),
+('Paul Turner', 'paul.turner@example.com', '$2a$10$3examplepasswordHash16'),
+('Quinn Evans', 'quinn.evans@example.com', '$2a$10$3examplepasswordHash17'),
+('Rachel Baker', 'rachel.baker@example.com', '$2a$10$3examplepasswordHash18'),
+('Samuel Gonzalez', 'samuel.gonzalez@example.com', '$2a$10$3examplepasswordHash19'),
+('Tina Hall', 'tina.hall@example.com', '$2a$10$3examplepasswordHash20'),
+('Umar Young', 'umar.young@example.com', '$2a$10$3examplepasswordHash21'),
+('Victoria King', 'victoria.king@example.com', '$2a$10$3examplepasswordHash22'),
+('William Wright', 'william.wright@example.com', '$2a$10$3examplepasswordHash23'),
+('Xavier Allen', 'xavier.allen@example.com', '$2a$10$3examplepasswordHash24'),
+('Yasmine Nelson', 'yasmine.nelson@example.com', '$2a$10$3examplepasswordHash25'),
+('Zachary Hill', 'zachary.hill@example.com', '$2a$10$3examplepasswordHash26'),
+('Anna Reed', 'anna.reed@example.com', '$2a$10$3examplepasswordHash27'),
+('Benjamin Howard', 'benjamin.howard@example.com', '$2a$10$3examplepasswordHash28'),
+('Chloe Lopez', 'chloe.lopez@example.com', '$2a$10$3examplepasswordHash29'),
+('Daniel Green', 'daniel.green@example.com', '$2a$10$3examplepasswordHash30'),
+('Elena Carter', 'elena.carter@example.com', '$2a$10$3examplepasswordHash31'),
+('Felix Murphy', 'felix.murphy@example.com', '$2a$10$3examplepasswordHash32'),
+('Gabriella Foster', 'gabriella.foster@example.com', '$2a$10$3examplepasswordHash33'),
+('Harrison Bennett', 'harrison.bennett@example.com', '$2a$10$3examplepasswordHash34'),
+('Isabel Ward', 'isabel.ward@example.com', '$2a$10$3examplepasswordHash35'),
+('Jacob Brooks', 'jacob.brooks@example.com', '$2a$10$3examplepasswordHash36'),
+('Kaitlyn Sanders', 'kaitlyn.sanders@example.com', '$2a$10$3examplepasswordHash37'),
+('Lucas Russell', 'lucas.russell@example.com', '$2a$10$3examplepasswordHash38'),
+('Madeline Perry', 'madeline.perry@example.com', '$2a$10$3examplepasswordHash39'),
+('Nathan Bell', 'nathan.bell@example.com', '$2a$10$3examplepasswordHash40');
+
+
+INSERT INTO user_roles (user_id, roles) VALUES
+(1, 'RIDER'),
+(2, 'DRIVER'),
+(3, 'RIDER'),
+(4, 'DRIVER'),
+(5, 'RIDER'),
+(6, 'DRIVER'),
+(7, 'RIDER'),
+(8, 'DRIVER'),
+(9, 'RIDER'),
+(10, 'DRIVER'),
+(11, 'RIDER'),
+(12, 'DRIVER'),
+(13, 'RIDER'),
+(14, 'DRIVER'),
+(15, 'RIDER'),
+(16, 'DRIVER'),
+(17, 'RIDER'),
+(18, 'DRIVER'),
+(19, 'RIDER'),
+(20, 'DRIVER'),
+(21, 'RIDER'),
+(22, 'DRIVER'),
+(23, 'RIDER'),
+(24, 'DRIVER'),
+(25, 'RIDER'),
+(26, 'DRIVER'),
+(27, 'RIDER'),
+(28, 'DRIVER'),
+(29, 'RIDER'),
+(30, 'DRIVER'),
+(31, 'RIDER'),
+(32, 'DRIVER'),
+(33, 'RIDER'),
+(34, 'DRIVER'),
+(35, 'RIDER'),
+(36, 'DRIVER'),
+(37, 'RIDER'),
+(38, 'DRIVER'),
+(39, 'RIDER'),
+(40, 'DRIVER');
+
+INSERT INTO rider (id, user_id ,rating) VALUES
+(1,1,4.9);
+
+INSERT INTO driver (id, user_id, rating, available, current_location) VALUES
+(2, 2, 4.7, true, ST_GeomFromText('POINT(77.1025 28.7041)', 4326)),
+(3, 3, 4.8, true, ST_GeomFromText('POINT(77.2090 28.6139)', 4326)),
+(4, 4, 4.5, true, ST_GeomFromText('POINT(72.8777 19.0760)', 4326)),
+(5, 5, 4.9, true, ST_GeomFromText('POINT(88.3639 22.5726)', 4326)),
+(6, 6, 4.6, true, ST_GeomFromText('POINT(80.2707 13.0827)', 4326)),
+(7, 7, 4.7, true, ST_GeomFromText('POINT(77.5946 12.9716)', 4326)),
+(8, 8, 4.8, true, ST_GeomFromText('POINT(73.8567 18.5204)', 4326)),
+(9, 9, 4.5, true, ST_GeomFromText('POINT(75.8577 22.7196)', 4326)),
+(10, 10, 4.9, true, ST_GeomFromText('POINT(78.4867 17.3850)', 4326)),
+(11, 11, 4.6, true, ST_GeomFromText('POINT(76.2673 9.9312)', 4326)),
+(12, 12, 4.7, true, ST_GeomFromText('POINT(77.4126 23.2599)', 4326)),
+(13, 13, 4.8, true, ST_GeomFromText('POINT(79.0882 21.1458)', 4326)),
+(14, 14, 4.5, true, ST_GeomFromText('POINT(74.3587 31.5204)', 4326)),
+(15, 15, 4.9, true, ST_GeomFromText('POINT(72.5714 23.0225)', 4326)),
+(16, 16, 4.6, true, ST_GeomFromText('POINT(70.8022 22.2736)', 4326)),
+(17, 17, 4.7, true, ST_GeomFromText('POINT(91.7362 26.1445)', 4326)),
+(18, 18, 4.8, true, ST_GeomFromText('POINT(85.3240 23.3441)', 4326)),
+(19, 19, 4.5, true, ST_GeomFromText('POINT(92.9376 11.7401)', 4326)),
+(20, 20, 4.9, true, ST_GeomFromText('POINT(76.3284 30.7333)', 4326)),
+(21, 21, 4.6, true, ST_GeomFromText('POINT(82.9739 25.3176)', 4326)),
+(22, 22, 4.7, true, ST_GeomFromText('POINT(88.2461 26.7271)', 4326)),
+(23, 23, 4.8, true, ST_GeomFromText('POINT(85.1376 25.5941)', 4326)),
+(24, 24, 4.5, true, ST_GeomFromText('POINT(93.7176 27.3389)', 4326)),
+(25, 25, 4.9, true, ST_GeomFromText('POINT(75.8577 26.9124)', 4326)),
+(26, 26, 4.6, true, ST_GeomFromText('POINT(83.3732 17.6868)', 4326)),
+(27, 27, 4.7, true, ST_GeomFromText('POINT(75.8333 22.7196)', 4326)),
+(28, 28, 4.8, true, ST_GeomFromText('POINT(77.6058 12.9734)', 4326)),
+(29, 29, 4.5, true, ST_GeomFromText('POINT(85.5143 20.2961)', 4326)),
+(30, 30, 4.9, true, ST_GeomFromText('POINT(74.7437 20.3899)', 4326)),
+(31, 31, 4.6, true, ST_GeomFromText('POINT(80.6350 7.2906)', 4326)),
+(32, 32, 4.7, true, ST_GeomFromText('POINT(79.8612 6.9271)', 4326)),
+(33, 33, 4.8, true, ST_GeomFromText('POINT(90.4125 23.8103)', 4326)),
+(34, 34, 4.5, true, ST_GeomFromText('POINT(89.6060 22.8456)', 4326)),
+(35, 35, 4.9, true, ST_GeomFromText('POINT(91.2802 23.8315)', 4326)),
+(36, 36, 4.6, true, ST_GeomFromText('POINT(88.3639 22.5726)', 4326)),
+(37, 37, 4.7, true, ST_GeomFromText('POINT(78.9629 20.5937)', 4326)),
+(38, 38, 4.8, true, ST_GeomFromText('POINT(81.8463 25.4358)', 4326)),
+(39, 39, 4.5, true, ST_GeomFromText('POINT(88.5563 27.3173)', 4326)),
+(40, 40, 4.9, true, ST_GeomFromText('POINT(76.8994 8.5241)', 4326));
+
+INSERT INTO wallet (id, user_id ,balance) VALUES
+(1,1,100),
+(2,2,500);
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -24,11 +24,11 @@ public class Ride {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
-    private Point pickupLocation;
+    @Column(nullable = false,columnDefinition = "Geometry(Point, 4326)")
+    private Point pickUpLocation;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
-    private Point dropOffPoint;
+    @Column(nullable = false,columnDefinition = "Geometry(Point, 4326)")
+    private Point dropOffLocation;
 
     @CreationTimestamp
     private LocalDateTime createdTime;

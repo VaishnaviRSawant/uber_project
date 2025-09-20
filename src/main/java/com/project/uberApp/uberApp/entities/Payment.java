@@ -3,11 +3,18 @@ package com.project.uberApp.uberApp.entities;
 import com.project.uberApp.uberApp.entities.enums.PaymentMethod;
 import com.project.uberApp.uberApp.entities.enums.PaymentStatus;
 import jakarta.persistence.*;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Payment {
 
     @Id
@@ -19,6 +26,8 @@ public class Payment {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Ride ride;
+
+    private Double amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;

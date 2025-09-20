@@ -13,14 +13,20 @@ import java.util.List;
 //ST_DWITHIN(point1,10000)
 
 @Repository
-public interface DriverRepository extends JpaRepository<Driver,Long> {
+public interface DriverRepository extends JpaRepository<Driver, Long> {
 
-    @Query(value = "SELECT d.*, ST_distance(d.current_location, :pickupLocation) AS distance " +
-            "FROM drivers d" +
-            "WHERE d.available = true AND ST_DWithin(d.current_location, :pickupLocation, 10000" +
-    "ORDER BY distance" +
-    "LIMIT 10", nativeQuery = true
-    )
+    @Query(value = "SELECT d.*, ST_Distance(d.current_location, :pickupLocation) AS distance " +
+            "FROM driver d " +
+            "WHERE d.available = true AND ST_DWithin(d.current_location, :pickupLocation, 10000) " +  // ✅ Fixed closing parenthesis
+            "ORDER BY distance " +  // ✅ Fixed ORDER BY syntax
+            "LIMIT 10", nativeQuery = true)
+    List<Driver> findTenNearestDrivers(Point pickupLocation);
 
-    List<Driver>  findTenNearestDrivers(Point pickupLocation);
+    @Query(value = "SELECT d.* " +
+            "FROM driver d " +
+            "WHERE d.available = true AND ST_DWithin(d.current_location, :pickupLocation, 15000) " +  // ✅ Fixed closing parenthesis
+            "ORDER BY d.rating DESC " +
+            "LIMIT 10", nativeQuery = true)
+    List<Driver> findTenNearbyTopRatedDrivers(Point pickupLocation);
+
 }

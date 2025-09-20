@@ -15,18 +15,18 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class RideRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
+    @Column(name = "pickup_location",columnDefinition = "Geometry(Point, 4326)")
     private Point pickUpLocation;
 
-    @Column(columnDefinition = "Geometry(Point, 4326)")
-    private Point dropOffPoint;
+    @Column(name = "drop_off_point",columnDefinition = "Geometry(Point, 4326)")
+    private Point dropOffLocation;
 
     @CreationTimestamp
     private LocalDateTime requestedTime;
