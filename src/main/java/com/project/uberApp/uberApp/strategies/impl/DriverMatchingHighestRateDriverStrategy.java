@@ -15,7 +15,7 @@ import java.util.List;
 @Transactional
 public class DriverMatchingHighestRateDriverStrategy implements DriverMatchingStrategy {
 
-    private  final DriverRepository driverRepository;
+    private final DriverRepository driverRepository;
 
 
     @Override

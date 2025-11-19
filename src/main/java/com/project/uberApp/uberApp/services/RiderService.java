@@ -9,15 +9,13 @@ import com.project.uberApp.uberApp.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.awt.print.Pageable;
-
 public interface RiderService {
 
     RideRequestDto requestRide(RideRequestDto rideRequestDto);
 
     RideDto cancelRide(Long rideId);
 
-    DriverDto rateRider(Long rideId,Integer rating);
+    DriverDto rateDriver(Long rideId, Integer rating);
 
     RiderDto getMyProfile();
 

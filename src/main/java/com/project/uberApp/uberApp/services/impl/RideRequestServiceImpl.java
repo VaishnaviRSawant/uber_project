@@ -3,7 +3,6 @@ package com.project.uberApp.uberApp.services.impl;
 import com.project.uberApp.uberApp.dto.RideRequestDto;
 import com.project.uberApp.uberApp.entities.RideRequest;
 import com.project.uberApp.uberApp.entities.Rider;
-import com.project.uberApp.uberApp.entities.enums.RideRequestStatus;
 import com.project.uberApp.uberApp.exceptions.ResourceNotFoundException;
 import com.project.uberApp.uberApp.repositories.RideRequestRepository;
 import com.project.uberApp.uberApp.repositories.RiderRepository;
@@ -57,7 +56,7 @@ public class RideRequestServiceImpl implements RideRequestService {
         rideRequest.setRideRequestStatus(rideRequestDto.getRideRequestStatus());
 
         // CALCULATE AND SET FARE - This is what you're missing!
-        double fare = fareCalculationStrategy.calculatFare(rideRequest);
+        double fare = fareCalculationStrategy.calculateFare(rideRequest);
         rideRequest.setFare(fare);
 
         // Save and return

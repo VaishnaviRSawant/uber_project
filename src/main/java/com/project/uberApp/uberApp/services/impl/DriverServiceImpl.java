@@ -10,10 +10,7 @@ import com.project.uberApp.uberApp.entities.enums.RideRequestStatus;
 import com.project.uberApp.uberApp.entities.enums.RideStatus;
 import com.project.uberApp.uberApp.exceptions.ResourceNotFoundException;
 import com.project.uberApp.uberApp.repositories.DriverRepository;
-import com.project.uberApp.uberApp.services.DriverService;
-import com.project.uberApp.uberApp.services.PaymentService;
-import com.project.uberApp.uberApp.services.RideRequestService;
-import com.project.uberApp.uberApp.services.RideService;
+import com.project.uberApp.uberApp.services.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -32,6 +29,7 @@ public class DriverServiceImpl implements DriverService {
     private final DriverRepository driverRepository;
     private final RideRequestService rideRequestService;
     private final PaymentService paymentService;
+    private final RatingService ratingService;
 
 
     @Override
@@ -95,6 +93,8 @@ public class DriverServiceImpl implements DriverService {
         Ride savedRide = rideService.updateRideStatus(ride, RideStatus.ONGOING);
 
         paymentService.createNewPayment(savedRide);
+        ratingService.createNewRating(savedRide);
+
         return modelMapper.map(savedRide, RideDto.class);
     }
 
@@ -123,7 +123,19 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public RiderDto rateRider(Long rideId, Integer rating) {
-        return null;
+        Ride ride = rideService.getRideById(rideId);
+        Driver driver = getCurrentDriver();
+
+        if (!driver.equals(ride.getDriver())) {
+            throw new RuntimeException("Driver cannot start a ride as he has not accepted it ");
+        }
+
+        if (!ride.getRideStatus().equals(RideStatus.ENDED)) {
+            throw new RuntimeException("Ride status is not ENDED hence cannot start rating, status:"+ ride.getRideStatus());
+        }
+
+        return ratingService.rateRider(ride, rating);
+
     }
 
     @Override
@@ -133,7 +145,7 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Page<RideDto> geAllMyRides(PageRequest pageRequest) {
+    public Page<RideDto> getAllMyRides(PageRequest pageRequest) {
         Driver currentDriver = getCurrentDriver();
         return rideService.getAllRidesOfDriver(currentDriver, pageRequest)
                 .map(ride -> modelMapper.map(ride, RideDto.class)
@@ -151,6 +163,11 @@ public class DriverServiceImpl implements DriverService {
         driver.setAvailable(available);
         return driverRepository.save(driver);
 
+    }
+
+    @Override
+    public Driver createNewDriver(Driver driver) {
+        return driverRepository.save(driver);
     }
 
 }

@@ -27,12 +27,12 @@ public class WalletTransaction {
 
     private TransactionMethod transactionMethod;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Ride ride;
 
     private String transactionId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Wallet wallet;
 
     @CreationTimestamp

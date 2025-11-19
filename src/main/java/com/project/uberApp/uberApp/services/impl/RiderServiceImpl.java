@@ -11,6 +11,7 @@ import com.project.uberApp.uberApp.exceptions.ResourceNotFoundException;
 import com.project.uberApp.uberApp.repositories.RideRequestRepository;
 import com.project.uberApp.uberApp.repositories.RiderRepository;
 import com.project.uberApp.uberApp.services.DriverService;
+import com.project.uberApp.uberApp.services.RatingService;
 import com.project.uberApp.uberApp.services.RideService;
 import com.project.uberApp.uberApp.services.RiderService;
 import com.project.uberApp.uberApp.strategies.RideFareCalculationStrategy;
@@ -22,8 +23,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.awt.print.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +36,7 @@ public class RiderServiceImpl implements RiderService {
     private final RideFareCalculationStrategy fareCalculationStrategy;
     private final RideService rideService;
     private final DriverService driverService;
+    private final RatingService ratingService;
 
     @Override
     @Transactional
@@ -55,7 +55,7 @@ public class RiderServiceImpl implements RiderService {
         rideRequest.setRideRequestStatus(RideRequestStatus.PENDING);
 
         // Calculate fare safely
-        Double fare = fareCalculationStrategy.calculatFare(rideRequest);
+        Double fare = fareCalculationStrategy.calculateFare(rideRequest);
         rideRequest.setFare(fare);
 
         // Save the ride request
@@ -92,12 +92,19 @@ public class RiderServiceImpl implements RiderService {
     }
 
     @Override
-    public DriverDto rateRider(Long rideId, Integer rating) {
-        if (rideId == null || rating == null) {
-            throw new IllegalArgumentException("Ride ID and rating cannot be null");
+    public DriverDto rateDriver(Long rideId, Integer rating) {
+        Ride ride = rideService.getRideById(rideId);
+       Rider rider = getCurrentRider();
+
+        if (!rider.equals(ride.getDriver())) {
+            throw new RuntimeException("Driver cannot start a ride as he has not accepted it ");
         }
-        // Implementation logic for rating a rider goes here...
-        return null;
+
+        if (!ride.getRideStatus().equals(RideStatus.ENDED)) {
+            throw new RuntimeException("Ride status is not ENDED hence cannot start rating, status:"+ ride.getRideStatus());
+        }
+
+        return ratingService.rateDriver(ride, rating);
     }
 
     @Override

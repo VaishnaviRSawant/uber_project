@@ -13,7 +13,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return true; // Apply this handler to all responses
+        return true;
     }
 
     @Override
@@ -25,11 +25,12 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
             ServerHttpRequest request,
             ServerHttpResponse response
     ) {
-        // If the response is already wrapped in ApiResponse, return it as is
+
+        if (request.getURI().getPath().contains("/v3/api-docs")) return body;
+
         if (body instanceof ApiResponse<?>) {
             return body;
         }
-        // Otherwise, wrap the response in ApiResponse
         return new ApiResponse<>(body);
     }
 }
